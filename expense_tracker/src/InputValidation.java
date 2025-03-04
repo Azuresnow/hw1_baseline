@@ -20,8 +20,8 @@ public class InputValidation extends Transaction{
     protected boolean checkCategory(){
         String category = getCategory();
         String[] categories = {"food", "travel", "bills", "entertainment", "other"};
-        if(!Arrays.stream(categories).anyMatch(x -> x.equals(category))){
-            JOptionPane.showMessageDialog(null, "Incorrect category must be food, travel, bills, entertainmentm, or others", "Error", JOptionPane.ERROR_MESSAGE);
+        if(!Arrays.stream(categories).anyMatch(x -> x.equals(category.toLowerCase()))){
+            JOptionPane.showMessageDialog(null, "Incorrect category must be food, travel, bills, entertainment, or others", "Error", JOptionPane.ERROR_MESSAGE);
             return false;
         }
         return true;

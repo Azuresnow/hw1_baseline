@@ -10,12 +10,14 @@ public class ExpenseTrackerView extends JFrame{
 
   private JTable transactionsTable;
   private JButton addTransactionBtn;
+  private JButton addFilterBtn;
   private JTextField amountField;
   private JTextField categoryField;
+  private JTextField timeStamp;
   private DefaultTableModel model;
   private List<Transaction> transactions = new ArrayList<>();
 
-  
+  String[] times = {"Time", "Morning", "Evening", "Afternoon", "Night"};
 
   public JTable getTransactionsTable() {
     return transactionsTable;
@@ -45,8 +47,17 @@ public class ExpenseTrackerView extends JFrame{
   public JButton getAddTransactionBtn() {
     return addTransactionBtn;
   }
+
+  public JButton getFilteredBtn() {
+    return addFilterBtn;
+  }
+
   public DefaultTableModel getTableModel() {
     return model;
+  }
+
+  public JButton getTimeStamp(){
+    return getTimeStamp();
   }
 
   public ExpenseTrackerView(DefaultTableModel model) {
@@ -55,6 +66,7 @@ public class ExpenseTrackerView extends JFrame{
     this.model = model;
 
     addTransactionBtn = new JButton("Add Transaction");
+    addFilterBtn = new JButton("filter");
 
     // Create UI components
     JLabel amountLabel = new JLabel("Amount:");
@@ -63,25 +75,39 @@ public class ExpenseTrackerView extends JFrame{
     JLabel categoryLabel = new JLabel("Category:");
     categoryField = new JTextField(10);
     transactionsTable = new JTable(model);
+
+    JLabel timeLabel = new JLabel("Select a time");
+    timeStamp = new JTextField(10);
+
+
+    JComboBox<String> dropdown = new JComboBox<>(times);
   
     // Layout components
+
+    JPanel topPanel = new JPanel();
+    topPanel.add(amountLabel);
+    topPanel.add(amountField);
+    topPanel.add(categoryLabel); 
+    topPanel.add(categoryField);
+    topPanel.add(timeLabel);
+    topPanel.add(dropdown);
+    
+
     JPanel inputPanel = new JPanel();
-    inputPanel.add(amountLabel);
-    inputPanel.add(amountField);
-    inputPanel.add(categoryLabel); 
-    inputPanel.add(categoryField);
     inputPanel.add(addTransactionBtn);
-  
-    JPanel buttonPanel = new JPanel();
-    buttonPanel.add(addTransactionBtn);
+    inputPanel.add(addFilterBtn);
+    
+    JPanel buttonPane = new JPanel();
+    buttonPane.add(addTransactionBtn);
+    buttonPane.add(addFilterBtn);
   
     // Add panels to frame
-    add(inputPanel, BorderLayout.NORTH);
+    add(topPanel, BorderLayout.NORTH);
     add(new JScrollPane(transactionsTable), BorderLayout.CENTER); 
-    add(buttonPanel, BorderLayout.SOUTH);
+    add(buttonPane, BorderLayout.SOUTH);
   
     // Set frame properties
-    setSize(400, 300);
+    setSize(600, 600);
     setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     setVisible(true);
   

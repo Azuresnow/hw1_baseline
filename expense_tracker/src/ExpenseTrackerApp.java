@@ -1,3 +1,4 @@
+import javax.swing.JComboBox;
 import javax.swing.table.DefaultTableModel;
 
 /**
@@ -38,7 +39,10 @@ public class ExpenseTrackerApp {
         view.addTransaction(t);
         }
       });
-
+      view.getTimeStamp().addActionListener(e -> {
+          JComboBox<?> comboBox = (JComboBox<?>) e.getSource();
+          String selectedOption = (String) comboBox.getSelectedItem();
+          
+      });
   }
-
 }
