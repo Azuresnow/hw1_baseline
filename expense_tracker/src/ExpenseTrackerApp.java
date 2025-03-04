@@ -22,18 +22,22 @@ public class ExpenseTrackerApp {
     view.setVisible(true);
 
     // Handle add transaction button clicks
-    view.getAddTransactionBtn().addActionListener(e -> {
-      
-      // Get transaction data from view
-      double amount = view.getAmountField(); 
-      String category = view.getCategoryField();
+      view.getAddTransactionBtn().addActionListener(e -> {
+        
+        // Get transaction data from view
+        double amount = view.getAmountField(); 
+        String category = view.getCategoryField();
+        
 
-      // Create transaction object
-      Transaction t = new Transaction(amount, category);
+        // Create transaction object
+        Transaction t = new Transaction(amount, category);
+        InputValidation value = new InputValidation(amount, category);
 
-      // Call controller to add transaction
-      view.addTransaction(t);
-    });
+        // Call controller to add transaction
+        if(value.checkAmount() && value.checkCategory()){
+        view.addTransaction(t);
+        }
+      });
 
   }
 

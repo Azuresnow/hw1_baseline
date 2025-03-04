@@ -1,13 +1,12 @@
 
 
-import javax.swing.*;
-import javax.swing.table.DefaultTableModel;
-
 import java.awt.*;
 import java.util.ArrayList;
 import java.util.List; 
+import javax.swing.*;
+import javax.swing.table.DefaultTableModel; 
 
-public class ExpenseTrackerView extends JFrame {
+public class ExpenseTrackerView extends JFrame{
 
   private JTable transactionsTable;
   private JButton addTransactionBtn;
@@ -128,9 +127,7 @@ public class ExpenseTrackerView extends JFrame {
     transactions.add(t);
     getTableModel().addRow(new Object[]{t.getAmount(), t.getCategory(), t.getTimestamp()});
     refresh();
+
   }
   
-
-
-  // Other view methods
 }
