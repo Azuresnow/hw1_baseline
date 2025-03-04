@@ -1,10 +1,20 @@
+
+import java.util.List;
+
 public class filtering extends InputValidation{
 
-    public filtering(double amount, String category) {
-        super(amount, category);
+    private List<Transaction> transactions;
+    
+        public filtering(double amount, String category, List<Transaction> transactions) {
+            super(amount, category);
+            this.transactions = transactions;
+        
     }
     
-    // protected t filterByAmount(){
+    public Object[] filterBy() {
 
-    // }
+        return transactions.stream()
+                .filter(transaction -> transaction.getAmount() == getAmount() && transaction.getCategory().equals(getCategory())).toArray();
+    }
+    
 }
