@@ -1,10 +1,11 @@
-import javax.swing.JComboBox;
+import java.util.InputMismatchException;
+import javax.swing.JOptionPane;
 import javax.swing.table.DefaultTableModel;
 
 /**
  * The ExpenseTrackerApp class allows users to add/remove daily transactions.
  */
-public class ExpenseTrackerApp {
+public class ExpenseTrackerApp{
 
   public static void main(String[] args) {
     
@@ -34,15 +35,20 @@ public class ExpenseTrackerApp {
         Transaction t = new Transaction(amount, category);
         InputValidation value = new InputValidation(amount, category);
 
-        // Call controller to add transaction
-        if(value.checkAmount() && value.checkCategory()){
-        view.addTransaction(t);
+        try{
+          value.errorHandle();
+          view.addTransaction(t);
+        }catch(InputMismatchException f){
+          if(!value.checkAmount()) {
+           JOptionPane.showMessageDialog(null, "Amount has to be between 0 and 1000 you entered: " + amount, "Error", JOptionPane.ERROR_MESSAGE);
+          } else {
+          JOptionPane.showMessageDialog(null, "Incorrect category must be food, travel, bills, entertainment, or others", "Error", JOptionPane.ERROR_MESSAGE);
+          }
         }
+
+        // Call controller to add transaction
+      
       });
-      view.getTimeStamp().addActionListener(e -> {
-          JComboBox<?> comboBox = (JComboBox<?>) e.getSource();
-          String selectedOption = (String) comboBox.getSelectedItem();
-          
-      });
+  
   }
 }

@@ -1,5 +1,5 @@
 import java.util.Arrays;
-import javax.swing.JOptionPane;
+import java.util.InputMismatchException;
 
 public class InputValidation extends Transaction{
     
@@ -10,21 +10,23 @@ public class InputValidation extends Transaction{
 
     protected boolean checkAmount(){
         double amount = getAmount();
-        if(amount < 0 || amount > 1000) {
-            JOptionPane.showMessageDialog(null, "Amount has to be between 0 and 1000 you entered: " + amount, "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
-        }
-        return true;
+        return !(amount < 0 || amount > 1000);
     }
 
     protected boolean checkCategory(){
         String category = getCategory();
         String[] categories = {"food", "travel", "bills", "entertainment", "other"};
-        if(!Arrays.stream(categories).anyMatch(x -> x.equals(category.toLowerCase()))){
-            JOptionPane.showMessageDialog(null, "Incorrect category must be food, travel, bills, entertainment, or others", "Error", JOptionPane.ERROR_MESSAGE);
-            return false;
+        return Arrays.stream(categories).anyMatch(x -> x.equals(category.toLowerCase()));
+    }
+
+    public void errorHandle(){
+        if(!checkAmount()){
+            throw new InputMismatchException("Amount must be 0 - 1000");
         }
-        return true;
+
+        if(!checkCategory()){
+            throw new InputMismatchException("Invalid category");
+        }
     }
     
 }

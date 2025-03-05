@@ -1,20 +1,18 @@
 
+import java.util.Arrays;
 import java.util.List;
+import javax.swing.table.DefaultTableModel;
 
-public class filtering extends InputValidation{
+public class filtering extends ExpenseTrackerView{
 
-    private List<Transaction> transactions;
-    
-        public filtering(double amount, String category, List<Transaction> transactions) {
-            super(amount, category);
-            this.transactions = transactions;
-        
+    public filtering(DefaultTableModel model) {
+        super(model);
     }
-    
-    public Object[] filterBy() {
 
-        return transactions.stream()
-                .filter(transaction -> transaction.getAmount() == getAmount() && transaction.getCategory().equals(getCategory())).toArray();
+    public void filterBy(String category){
+         List<Transaction> filteredTransactions = getTransactions();
+         Arrays.asList(filteredTransactions).stream().anyMatch(x -> x.equals(category));
+        refreshTable(filteredTransactions);
     }
     
 }
