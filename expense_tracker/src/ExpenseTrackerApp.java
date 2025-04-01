@@ -7,6 +7,10 @@ import javax.swing.table.DefaultTableModel;
  */
 public class ExpenseTrackerApp{
 
+  
+  /** 
+   * @param args
+   */
   public static void main(String[] args) {
     
     // Create MVC components

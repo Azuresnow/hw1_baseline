@@ -8,11 +8,19 @@ public class InputValidation extends Transaction{
 
     }
 
+    
+    /** 
+     * @return boolean
+     */
     protected boolean checkAmount(){
         double amount = getAmount();
         return !(amount < 0 || amount > 1000);
     }
 
+    
+    /** 
+     * @return boolean
+     */
     protected boolean checkCategory(){
         String category = getCategory();
         String[] categories = {"food", "travel", "bills", "entertainment", "other"};

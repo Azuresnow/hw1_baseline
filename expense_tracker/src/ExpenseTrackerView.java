@@ -19,10 +19,18 @@ public class ExpenseTrackerView extends JFrame{
 
   String[] times = {"Time", "Morning", "Evening", "Afternoon", "Night"};
 
+  
+  /** 
+   * @return JTable
+   */
   public JTable getTransactionsTable() {
     return transactionsTable;
   }
 
+  
+  /** 
+   * @return double
+   */
   public double getAmountField() {
     if(amountField.getText().isEmpty()) {
       return 0;
@@ -32,6 +40,10 @@ public class ExpenseTrackerView extends JFrame{
     }
   }
 
+  
+  /** 
+   * @param amountField
+   */
   public void setAmountField(JTextField amountField) {
     this.amountField = amountField;
   }

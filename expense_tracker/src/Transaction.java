@@ -15,14 +15,26 @@ public class Transaction{
     this.timestamp = generateTimestamp();
   }
 
+  
+  /** 
+   * @return double
+   */
   public double getAmount() {
     return amount;
   }
 
+  
+  /** 
+   * @param amount
+   */
   public void setAmount(double amount) {
     this.amount = amount;
   }
 
+  
+  /** 
+   * @return String
+   */
   public String getCategory() {
     return category;
   }

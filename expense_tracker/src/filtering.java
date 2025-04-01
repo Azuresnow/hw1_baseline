@@ -9,6 +9,10 @@ public class filtering extends ExpenseTrackerView{
         super(model);
     }
 
+    
+    /** 
+     * @param category
+     */
     public void filterBy(String category){
          List<Transaction> filteredTransactions = getTransactions();
          Arrays.asList(filteredTransactions).stream().anyMatch(x -> x.equals(category));
